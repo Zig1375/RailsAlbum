@@ -1,0 +1,27 @@
+<div class="panel panel-default photos-list photos-list-edit">
+    <div class="panel-heading">Photos</div>
+    <div class="panel-body">
+        <% if @album.photos.count > 0 %>
+            <div class="row">
+                <% @album.photos.each_with_index do |photo, idx| %>
+                    <% if (idx > 0 && idx % 4 == 0) %>
+                        </div><div class="row">
+                    <% end %>
+
+                    <% if photo.thumb || photo.path %>
+                        <div class="col-md-3">
+                            <div class="photo-preview">
+                                <%= link_to photo.path, target: '_blank' do %>
+                                    <img src="<%= photo.thumb || photo.path %>" alt="<%= photo.title %>" class="img-rounded" />
+                                <% end %>
+                                <div class="photo-desc <%= photo.title ? '' : 'no-desc' %>"><%= photo.title || 'No description' %></div>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        <% else %>
+            <p class="lead text-center">No any photo</p>
+        <% end %>
+    </div>
+</div>

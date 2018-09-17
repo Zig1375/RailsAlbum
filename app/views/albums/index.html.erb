@@ -1,0 +1,49 @@
+<div class="page-header">
+    <% if can? :new, Album %>
+        <%= link_to 'New album', new_album_path, class: "btn btn-success pull-right" %>
+    <% end %>
+    <h1>Listing albums</h1>
+</div>
+
+
+
+<% if @albums.count > 0 %>
+    <%= paginate @albums %>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Photos</th>
+                <th>Owner</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @albums.each do |album| %>
+                <tr>
+                    <td>
+                        <span class="glyphicon glyphicon-lock <%= album.private ? '' : 'album-public' %>"></span>
+                        <%= link_to album.title, album_path(album) %>
+                    </td>
+                    <td>
+                        <%= album.photos.count %>
+                    </td>
+                    <td>
+                        <%= @users.find(id = album.user_id).email.gsub(/(@.*)$/, '@...') %>
+                    </td>
+                    <td style="width: 100px; text-align: right;">
+                        <% if can? :manage, album %>
+                            <%= link_to 'Edit', edit_album_path(album) %> |
+                            <%= link_to 'Destroy', album_path(album), method: :delete, data: {confirm: 'Are you sure?'} %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= paginate @albums %>
+<% else %>
+    No any albums
+<% end %>

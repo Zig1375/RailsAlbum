@@ -1,0 +1,15 @@
+<div class="page-header">
+    <%= link_to 'Back', albums_path, class: "btn btn-default pull-right" %>
+    <% if can? :manage, @album %>
+        <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-default pull-right", style: "margin-right: 5px;" %>
+    <% end %>
+
+    <h1>
+        <%= @album.title %>
+        <% if @album.private %>
+            (private album)
+        <% end %>
+    </h1>
+</div>
+
+<%= render 'photos-show' %>

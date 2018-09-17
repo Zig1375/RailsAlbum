@@ -1,0 +1,77 @@
+// Place all the styles related to the albums controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.album-public {
+    opacity: 0.3;
+}
+
+.photo-preview {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+
+    img {
+        width: 100%;
+    }
+}
+
+.photos-list .row {
+    margin-bottom: 10px;
+}
+
+.photos-list .row:last-child {
+    margin-bottom: 0;
+}
+
+.photos-list-edit {
+    .photo-preview {
+        position: relative;
+        overflow: hidden;
+
+        .photo-desc {
+            text-align: center;
+            width: 100%;
+            height: 26px;
+            padding: 5px;
+            color: #000;
+        }
+
+        .photo-desc.no-desc {
+            font-style: italic;
+            color: #888
+        }
+
+        .photo-action {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            z-index: 99;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00000088;
+            padding-top: 50px;
+            transition: 0.3s all linear;
+
+            div {
+                text-align: center;
+                margin: 15px 0;
+
+                a {
+                    color: #fff;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .photo-preview:hover {
+        .photo-action {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
